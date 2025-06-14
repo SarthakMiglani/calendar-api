@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  calendar-booking-api:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - GOOGLE_CALENDAR_ID=${GOOGLE_CALENDAR_ID}
+      - GOOGLE_SERVICE_ACCOUNT_KEY_PATH=/app/service-account-key.json
+      - GOOGLE_CALENDAR_TIMEZONE=Asia/Kolkata
+    volumes:
+      - ./service-account-key.json:/app/service-account-key.json:ro
+    restart: unless-stopped
