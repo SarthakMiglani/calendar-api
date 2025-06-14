@@ -112,12 +112,14 @@ public class CalendarService {
                     .setDescription(buildEventDescription(request));
 
             EventDateTime start = new EventDateTime()
-                    .setDateTime(new DateTime(startDateTime.toInstant().toEpochMilli()))
+                    .setDateTime(new DateTime(startDateTime.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)))
+                    .setTimeZone(properties.getTimeZone())
                     .setTimeZone(properties.getTimeZone());
             event.setStart(start);
 
             EventDateTime end = new EventDateTime()
-                    .setDateTime(new DateTime(endDateTime.toInstant().toEpochMilli()))
+                    .setDateTime(new DateTime(startDateTime.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME)))
+                    .setTimeZone(properties.getTimeZone())
                     .setTimeZone(properties.getTimeZone());
             event.setEnd(end);
 
